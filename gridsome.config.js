@@ -10,12 +10,48 @@ module.exports = {
     {
       use: '@gridsome/source-filesystem',
       options: {
-        typeName: 'Post',
-        path: 'blog/*.md',
+        typeName: 'Articles',
+        path: 'articles/*',
+      }
+    },
+    {
+      use: '@gridsome/source-contentful',
+      options: {
+        space: '5qlhalarmq4j', // required
+        accessToken: 'HLel2mGYSRe6hgaG8NK_4uepzdraV7QZWnPiY-AFPIk', // required
+        host: 'cdn.contentful.com',
+        environment: 'master',
+        typeName: 'Contentful'
       }
     }
   ],
   templates: {
-    Post: '/blog/:year-:month-:title',
-  }
+    Articles: '/articles/:slug',
+  },
+  rules: [
+    {
+      test: /\.s(c|a)ss$/,
+      use: [
+        'vue-style-loader',
+        'css-loader',
+        {
+          loader: 'sass-loader',
+          // Requires sass-loader@^7.0.0
+          options: {
+            implementation: require('sass'),
+            fiber: require('fibers'),
+            indentedSyntax: true // optional
+          },
+          // Requires sass-loader@^8.0.0
+          options: {
+            implementation: require('sass'),
+            sassOptions: {
+              fiber: require('fibers'),
+              indentedSyntax: true // optional
+            },
+          },
+        },
+      ],
+    },
+  ],
 }

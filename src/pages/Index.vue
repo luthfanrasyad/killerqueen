@@ -1,24 +1,40 @@
 <template>
   <Layout>
+    <v-row>
+      <v-card v-for="edge in $page.allArticles.edges" :key="edge.node.id" class="mx-auto" max-width="380" max-height="400" style="margin-bottom: 10px;" 
+      :to="`articles/${edge.node.slug}`">
+        <v-img :src="edge.node.url" height="250" max-width="380px"> </v-img>
+        <v-card-title>{{edge.node.title}} </v-card-title>
+        <v-card-subtitle class="pb-0">{{edge.node.description}}</v-card-subtitle>
+        <v-card-text>{{edge.node.date_created}}</v-card-text>
+        <br>
+      </v-card>
+    </v-row>
 
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
-
-    <h1>Hello, world!</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
 
   </Layout>
 </template>
+<page-query>
+query {
+  allArticles{
+    edges {
+      node {
+        date_created
+        description
+        url
+        slug
+        title
+      }
+    }
+  }
+}
+</page-query>
 <script>
+
 export default {
+  computed: {
+
+  },
   metaInfo: {
     title: 'Hello, world!'
   }

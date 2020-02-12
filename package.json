@@ -7,8 +7,18 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^13.4.0",
+    "@gridsome/source-contentful": "^0.5.2",
     "@gridsome/source-filesystem": "^0.6.2",
     "@gridsome/transformer-remark": "^0.4.0",
-    "gridsome": "^0.7.0"
+    "axios": "^0.19.2",
+    "gridsome": "^0.7.0",
+    "vuetify": "^2.2.11"
+  },
+  "devDependencies": {
+    "deepmerge": "^4.2.2",
+    "fibers": "^4.0.2",
+    "sass": "^1.25.0",
+    "sass-loader": "^8.0.2"
   }
 }
